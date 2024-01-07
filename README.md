@@ -26,4 +26,4 @@ The generated Java classes are saved in the "output" directory. Make sure this d
 
 This script automatically overwrites any existing Java class files in the "output" directory with the same names as the database tables.
 
-##"This project is open for further development and welcomes contributions from the community."
+## "This project is open for further development and welcomes contributions from the community."
