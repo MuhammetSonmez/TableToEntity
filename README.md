@@ -10,8 +10,9 @@ Make sure to replace the placeholder values for host, user, password, and databa
 ## How to Use:
 
 Install the required module using the following command:
+  ```plaintext
   pip install mysql-connector-python
-
+  ```
 Configure the script by updating the connection details.
 
 Run the script to generate Java class files.
