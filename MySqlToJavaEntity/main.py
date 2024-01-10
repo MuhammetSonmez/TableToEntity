@@ -22,17 +22,20 @@ def getTableNames():
 def getDataFromTable(table):
     cursor.execute(f"SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{table}'")
     cols = cursor.fetchall()
+	
     return cols
 
 def addGetter(dataType, varName):
     getter = "\n\t"
     getter += "public " + dataType + " get"+varName[0].upper() + varName[1:-1] + "() { \n" + "\t\treturn " + varName[0:-1] +";\n" + "\t}\n\n" 
+	
     return getter
 
 
 def addSetter(dataType, varName):
     setter = "\n\t"
     setter += "public void set" + varName[0].upper() + varName[1:-1] + "("+dataType + " " + varName[:-1] + "){\n"+"\t\tthis." + varName[:-1] + " = " + varName[:-1] + ";\n\t}\n"
+
     return setter
 
 def addConstructor(dataTypes, varNames, name):
@@ -40,8 +43,10 @@ def addConstructor(dataTypes, varNames, name):
     constructor = "\n\t"
     head = "public " + name[0].upper() + name[1:] + "("
     body = ""
+	
     for i in range(len(dataTypes)):
         head += dataTypes[i] + " "+ varNames[i] +", "
+	    
     head = head[:-2] + "){\n"
 
 
@@ -57,6 +62,7 @@ def addGetterSetter(lines, name):
     output = "\n"
     dataTypes = []
     varNames = []
+	
     for var in lines:
         _, dataType, varName = var.split(" ")
         varName = varName.replace(";", "")
@@ -92,6 +98,7 @@ def addGetterSetter(lines, name):
         this.customer_id = customer_id;
     }
 """
+
 def dataParser(data, name):
     output = "public class "+ name[0].upper() + name[1:]+"{\n"
     temp = data
@@ -131,4 +138,5 @@ def createJavaClass():
 #dataParser(getDataFromTable(getTableNames()[2]))
 
 createJavaClass()
+
 conn.close()
